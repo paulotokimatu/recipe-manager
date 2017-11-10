@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RecipesService } from './recipes.service';
 
 /**
  * Generated class for the RecipesPage page.
@@ -14,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'recipes.html',
 })
 export class RecipesPage {
+  recipes = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public recipesService: RecipesService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipesPage');
+    this.recipes = this.recipesService.getRecipes();
   }
-
 }
