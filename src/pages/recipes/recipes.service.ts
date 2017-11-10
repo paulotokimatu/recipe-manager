@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
+import { Recipe } from "./recipe.model";
 
 @Injectable()
 export class RecipesService {
-  allRecipes: any[] = [
-    'foo',
-    'bar',
-  ];
+  allRecipes: Recipe[] = [];
 
+  constructor() {
+    this.allRecipes.push(new Recipe('Foo', 'blabla', 1, ['Meat', 'Potato']))
+  }
+  
   getRecipes() {
     console.log('ok');
     return this.allRecipes;

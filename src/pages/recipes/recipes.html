@@ -15,5 +15,5 @@
 
 <ion-content padding>
   aaaa
-  {{recipes}}
+  <div *ngIf="recipes.length > 0">{{recipes[0].title}}</div>
 </ion-content>
