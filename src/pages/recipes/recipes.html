@@ -14,6 +14,18 @@
 
 
 <ion-content padding>
-  aaaa
-  <div *ngIf="recipes.length > 0">{{recipes[0].title}}</div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let recipe of recipes">
+      <ion-item>
+        <h2>{{recipe.title}}</h2>
+        <p>{{recipe.description}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Del
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

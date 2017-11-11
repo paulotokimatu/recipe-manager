@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import {NgFor} from '@angular/common';
 import { Recipe } from "./recipe.model";
 
 @Injectable()
