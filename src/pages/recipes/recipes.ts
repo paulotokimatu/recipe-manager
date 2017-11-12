@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { RecipePage } from './recipe/recipe';
 import { RecipesService } from './recipes.service';
+import { AddRecipePage } from './add-recipe.html/add-recipe';
 
 /**
  * Generated class for the RecipesPage page.
@@ -20,7 +21,8 @@ export class RecipesPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public recipesService: RecipesService) {
+              public recipesService: RecipesService,
+              public modalCtrl: ModalController,) {
   }
 
   ionViewDidLoad() {
@@ -30,5 +32,10 @@ export class RecipesPage {
 
   onLoadRecipe(recipe) {
     this.navCtrl.push(RecipePage, {recipe: recipe});
+  }
+
+  onAddRecipe() {
+    let modal = this.modalCtrl.create(AddRecipePage);
+    modal.present();
   }
 }

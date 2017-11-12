@@ -13,6 +13,7 @@ import { RecipePage } from '../pages/recipes/recipe/recipe';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
+import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TabsPage } from '../pages/tabs/tabs';
     TabsPage,
     RecipesPage,
     RecipePage,
+    AddRecipePage,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { TabsPage } from '../pages/tabs/tabs';
     TabsPage,
     RecipesPage,
     RecipePage,
+    AddRecipePage,
   ],
   providers: [
     StatusBar,

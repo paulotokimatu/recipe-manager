@@ -14,6 +14,7 @@
 
 
 <ion-content padding>
+  <button ion-button (click)="onAddRecipe()">Add recipe</button>
   <ion-list>
     <ion-item-sliding
       *ngFor="let recipe of recipes"
