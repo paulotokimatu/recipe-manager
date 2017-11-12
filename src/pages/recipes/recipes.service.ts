@@ -13,4 +13,12 @@ export class RecipesService {
   getRecipes() {
     return this.allRecipes;
   }
+
+  addRecipe(newRecipe: Recipe) {
+    this.allRecipes.push(new Recipe(newRecipe.title,
+      newRecipe.description,
+      newRecipe.difficulty,
+      newRecipe.steps,
+      newRecipe.ingredients));
+  }
 }

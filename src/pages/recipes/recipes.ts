@@ -27,6 +27,10 @@ export class RecipesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipesPage');
+    this.onLoadAllRecipes();
+  }
+
+  onLoadAllRecipes() {
     this.recipes = this.recipesService.getRecipes();
   }
 
@@ -37,5 +41,9 @@ export class RecipesPage {
   onAddRecipe() {
     let modal = this.modalCtrl.create(AddRecipePage);
     modal.present();
+    modal.onDidDismiss((data) => {
+      if (!data) return;
+      this.onLoadAllRecipes();
+    })
   }
 }
