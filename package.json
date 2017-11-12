@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.1",
+    "codelyzer": "^4.0.1",
+    "tslint": "^5.8.0",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project"
