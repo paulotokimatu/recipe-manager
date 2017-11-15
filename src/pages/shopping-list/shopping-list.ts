@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { IonicPage } from "ionic-angular";
+import { IonicPage, NavController } from "ionic-angular";
+import { ListDetailPage } from "./list-detail/list-detail";
 import { ShoppingListService } from "./shopping-list.service";
 
 @IonicPage()
@@ -10,7 +11,8 @@ import { ShoppingListService } from "./shopping-list.service";
 export class ShoppingListPage {
   allLists = [];
 
-  constructor(public shoppingListService: ShoppingListService) {
+  constructor(public shoppingListService: ShoppingListService,
+              public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
@@ -20,5 +22,9 @@ export class ShoppingListPage {
 
   onLoadAllLists() {
     this.allLists = this.shoppingListService.getLists();
+  }
+
+  onLoadList(list) {
+    this.navCtrl.push(ListDetailPage, {list: list});
   }
 }
