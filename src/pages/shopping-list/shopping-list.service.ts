@@ -9,11 +9,17 @@ export class ShoppingListService {
   constructor() {
     this.allLists.push(new List('LIST01', new Date(), [
       new ShoppingItem('Potato', 4, 0.5, false),
-      new ShoppingItem('Meat', 2, 10.5, false)
+      new ShoppingItem('Meat', 2, 10.5, true)
     ]))
   }
 
   getLists() {
     return this.allLists;
+  }
+
+  addList(newList) {
+    this.allLists.push(new List(newList.title,
+      new Date(),
+      newList.items));
   }
 }

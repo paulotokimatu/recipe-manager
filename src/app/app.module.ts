@@ -14,6 +14,7 @@ import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
 import { ListDetailPage } from '../pages/shopping-list/list-detail/list-detail';
+import { AddListPage } from '../pages/shopping-list/add-list/add-list';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
 
@@ -28,6 +29,7 @@ import { ShoppingListService } from '../pages/shopping-list/shopping-list.servic
     AddRecipePage,
     ShoppingListPage,
     ListDetailPage,
+    AddListPage,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { ShoppingListService } from '../pages/shopping-list/shopping-list.servic
     AddRecipePage,
     ShoppingListPage,
     ListDetailPage,
+    AddListPage,
   ],
   providers: [
     StatusBar,

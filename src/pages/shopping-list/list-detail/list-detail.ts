@@ -16,4 +16,8 @@ export class ListDetailPage implements OnInit {
   ngOnInit() {
     this.list = this.navParams.get('list');
   }
+
+  onPrint() {
+    console.log(this.list);
+  }
 }
