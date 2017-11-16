@@ -7,7 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { RecipePage } from '../pages/recipes/recipe/recipe';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
@@ -22,7 +21,6 @@ import { ShoppingListService } from '../pages/shopping-list/shopping-list.servic
   declarations: [
     MyApp,
     ContactPage,
-    HomePage,
     TabsPage,
     RecipesPage,
     RecipePage,
@@ -39,7 +37,6 @@ import { ShoppingListService } from '../pages/shopping-list/shopping-list.servic
   entryComponents: [
     MyApp,
     ContactPage,
-    HomePage,
     TabsPage,
     RecipesPage,
     RecipePage,
