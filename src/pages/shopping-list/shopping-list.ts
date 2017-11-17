@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, ModalController, NavController } from "ionic-angular";
 import { AddListPage } from "./add-list/add-list";
 import { ListDetailPage } from "./list-detail/list-detail";
+import { List } from "./models/list.model";
 import { ShoppingListService } from "./shopping-list.service";
 
 @IonicPage()
@@ -26,7 +27,7 @@ export class ShoppingListPage {
     this.allLists = this.shoppingListService.getLists();
   }
 
-  onLoadList(list) {
+  onLoadList(list: List) {
     this.navCtrl.push(ListDetailPage, {list: list});
   }
 
@@ -37,5 +38,10 @@ export class ShoppingListPage {
       if (!data) return;
       this.onLoadAllLists();
     })
+  }
+
+  onRemoveList(i: number) {
+    this.shoppingListService.removeList(i);
+    this.onLoadAllLists();
   }
 }

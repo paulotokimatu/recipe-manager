@@ -14,12 +14,16 @@ export class ShoppingListService {
   }
 
   getLists() {
-    return this.allLists;
+    return [...this.allLists];
   }
 
   addList(newList) {
     this.allLists.push(new List(newList.name,
       new Date(),
       newList.items));
+  }
+
+  removeList(index: number) {
+    this.allLists.splice(index, 1);
   }
 }

@@ -8,13 +8,13 @@
   <button ion-button (click)="onAddList()">Create new list</button>
   <ion-list>
     <ion-item-sliding
-      *ngFor="let list of allLists"
+      *ngFor="let list of allLists; let i = index"
       (click)="onLoadList(list)">
       <ion-item>
         <h2>{{list.name}}</h2>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger">
+        <button ion-button color="danger" (click)="onRemoveList(i)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
