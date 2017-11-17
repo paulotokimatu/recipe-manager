@@ -6,25 +6,28 @@ import { MyApp } from './app.component';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { RecipePage } from '../pages/recipes/recipe/recipe';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
+import { ListDetailPage } from '../pages/shopping-list/list-detail/list-detail';
+import { AddListPage } from '../pages/shopping-list/add-list/add-list';
+import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
+import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContactPage,
-    HomePage,
     TabsPage,
     RecipesPage,
     RecipePage,
     AddRecipePage,
+    ShoppingListPage,
+    ListDetailPage,
+    AddListPage,
   ],
   imports: [
     BrowserModule,
@@ -33,19 +36,21 @@ import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     ContactPage,
-    HomePage,
     TabsPage,
     RecipesPage,
     RecipePage,
     AddRecipePage,
+    ShoppingListPage,
+    ListDetailPage,
+    AddListPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RecipesService,
+    ShoppingListService,
   ]
 })
 export class AppModule {}

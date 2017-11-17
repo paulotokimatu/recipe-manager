@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>recipes</ion-title>
+    <ion-title>Recipes</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,7 +24,7 @@
         <p>{{recipe.description}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger">
+        <button ion-button color="danger" (click)="onRemoveRecipe(i)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>

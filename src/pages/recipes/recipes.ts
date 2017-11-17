@@ -46,4 +46,9 @@ export class RecipesPage {
       this.onLoadAllRecipes();
     })
   }
+
+  onRemoveRecipe(i: number) {
+    this.recipesService.removeList(i);
+    this.onLoadAllRecipes();
+  }
 }
