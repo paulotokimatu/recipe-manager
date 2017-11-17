@@ -11,7 +11,7 @@ export class RecipesService {
   }
 
   getRecipes() {
-    return this.allRecipes;
+    return [...this.allRecipes];
   }
 
   addRecipe(newRecipe: Recipe) {
@@ -20,5 +20,9 @@ export class RecipesService {
       newRecipe.difficulty,
       newRecipe.steps,
       newRecipe.ingredients));
+  }
+
+  removeList(index: number) {
+    this.allRecipes.splice(index, 1);
   }
 }
