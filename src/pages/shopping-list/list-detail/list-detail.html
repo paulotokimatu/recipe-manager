@@ -10,6 +10,7 @@
   <ion-list *ngFor="let item of list.items">
     <ion-item>
       <ion-label>{{item.name}}</ion-label>
+      <h3 item-end>{{item.price * item.quantity | currency:'BRL'}}</h3>      
       <ion-toggle color="danger" [(ngModel)]="item.check" ></ion-toggle>
       <!-- <ion-checkbox [(ngModel)]="item.check"></ion-checkbox> -->
     </ion-item>

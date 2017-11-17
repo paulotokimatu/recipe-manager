@@ -18,7 +18,7 @@ export class ShoppingListService {
   }
 
   addList(newList) {
-    this.allLists.push(new List(newList.title,
+    this.allLists.push(new List(newList.name,
       new Date(),
       newList.items));
   }

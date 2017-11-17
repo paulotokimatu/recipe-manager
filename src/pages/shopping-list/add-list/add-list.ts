@@ -42,9 +42,8 @@ export class AddListPage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.listForm);
-    //this.shoppingListService.addList(this.listForm.value);
-    //this.viewCtrl.dismiss(true);
+    this.shoppingListService.addList(this.listForm.value);
+    this.viewCtrl.dismiss(true);
   }
 
   buildItem(name: string, quantity: number, price: number) {
