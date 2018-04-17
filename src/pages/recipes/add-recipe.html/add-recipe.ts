@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+
 import { Recipe } from '../recipe.model';
 import { RecipesService } from '../recipes.service';
 
@@ -14,6 +15,7 @@ export class AddRecipePage implements OnInit {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public toastCtrl: ToastController,
               public viewCtrl: ViewController,
               private recipesService: RecipesService) {
   }
@@ -44,6 +46,12 @@ export class AddRecipePage implements OnInit {
 
   onSubmit() {
     this.recipesService.addRecipe(this.recipeForm.value);
+    let toast = this.toastCtrl.create({
+      message: 'Recipe was created successfully',
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
     this.viewCtrl.dismiss(true);
   }
 }

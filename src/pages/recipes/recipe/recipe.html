@@ -1,9 +1,16 @@
 <ion-header>    
   <ion-navbar>
-    <ion-title>{{recipe.title}}</ion-title>
+    <ion-title>{{ recipe.title }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  {{recipe.title}}
+  <div>{{ recipe.title }}</div>
+  <div>{{ recipe.description }}</div>
+  <div>{{ recipe.difficulty }}</div>
+  <ion-list>
+    <ion-list-header>Ingredients</ion-list-header>
+    <ion-item *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</ion-item>
+  </ion-list>
+  <div>{{ recipe.steps }}</div>
 </ion-content>
