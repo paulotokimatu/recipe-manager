@@ -6,8 +6,8 @@ export class RecipesService {
   allRecipes: Recipe[] = [];
 
   constructor() {
-    this.allRecipes.push(new Recipe('Foo', 'blabla', 1, 'lorem ipsum', ['Meat', 'Potato']));
-    this.allRecipes.push(new Recipe('Foo', 'blabla', 1, 'lorem ipsum', ['Meat', 'Potato']));
+    this.allRecipes.push(new Recipe('Foo', 1, ['Meat', 'Potato'], 'lorem ipsum'));
+    this.allRecipes.push(new Recipe('Bar', 5, ['Meat', 'Potato'], 'lorem ipsum'));
   }
 
   getRecipes() {
@@ -16,10 +16,10 @@ export class RecipesService {
 
   addRecipe(newRecipe: Recipe) {
     this.allRecipes.push(new Recipe(newRecipe.title,
-      newRecipe.description,
       newRecipe.difficulty,
-      newRecipe.steps,
-      newRecipe.ingredients));
+      newRecipe.ingredients,
+      newRecipe.notes,
+    ));
   }
 
   removeList(index: number) {
