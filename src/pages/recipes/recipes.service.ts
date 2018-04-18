@@ -6,8 +6,8 @@ export class RecipesService {
   allRecipes: Recipe[] = [];
 
   constructor() {
-    this.allRecipes.push(new Recipe('Foo', 1, ['Meat', 'Potato'], 'lorem ipsum'));
-    this.allRecipes.push(new Recipe('Bar', 5, ['Meat', 'Potato'], 'lorem ipsum'));
+    this.allRecipes.push(new Recipe('Banana bread', 1, ['Meat', 'Potato'], 'lorem ipsum'));
+    this.allRecipes.push(new Recipe('German pizza', 5, ['Meat', 'Potato'], 'lorem ipsum'));
   }
 
   getRecipes() {
