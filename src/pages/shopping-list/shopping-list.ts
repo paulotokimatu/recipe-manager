@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, ModalController, NavController } from "ionic-angular";
-import { AddListPage } from "./add-list/add-list";
-import { ListDetailPage } from "./list-detail/list-detail";
+import { ShoppingListAddPage } from "./shopping-list-add/shopping-list-add";
+import { ShoppingListDetailPage } from "./shopping-list-detail/shopping-list-detail";
 import { List } from "./models/list.model";
 import { ShoppingListService } from "./shopping-list.service";
 
@@ -28,11 +28,11 @@ export class ShoppingListPage {
   }
 
   onLoadList(list: List) {
-    this.navCtrl.push(ListDetailPage, {list: list});
+    this.navCtrl.push(ShoppingListDetailPage, {list: list});
   }
 
   onAddList() {
-    let modal = this.modalCtrl.create(AddListPage);
+    let modal = this.modalCtrl.create(ShoppingListAddPage);
     modal.present();
     modal.onDidDismiss((data) => {
       if (!data) return;

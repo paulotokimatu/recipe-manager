@@ -3,10 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { List } from '../models/list.model';
 
 @Component({
-  selector: 'page-list-detail',
-  templateUrl: 'list-detail.html'
+  selector: 'page-shopping-list-detail',
+  templateUrl: 'shopping-list-detail.html'
 })
-export class ListDetailPage implements OnInit {
+export class ShoppingListDetailPage implements OnInit {
   list: List[] = [];
 
   constructor(public navCtrl: NavController,

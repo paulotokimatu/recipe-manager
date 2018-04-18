@@ -5,10 +5,10 @@ import { List } from '../models/list.model';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
-  selector: 'page-add-list',
-  templateUrl: 'add-list.html'
+  selector: 'page-shopping-list-add',
+  templateUrl: 'shopping-list-add.html'
 })
-export class AddListPage implements OnInit {
+export class ShoppingListAddPage implements OnInit {
   listForm: FormGroup;
   
   constructor(public navCtrl: NavController,
