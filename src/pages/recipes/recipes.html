@@ -14,12 +14,17 @@
 
 
 <ion-content padding>
-  <button ion-button (click)="onAddRecipe()">Add recipe</button>
+    <ion-fab right bottom>
+      <button ion-fab color="default" (click)="onAddRecipe()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
   <ion-list>
     <ion-item-sliding
       *ngFor="let recipe of recipes"
       (click)="onLoadRecipe(recipe)">
       <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://via.placeholder.com/200x200">
+        </ion-thumbnail>
         <h2>{{recipe.title}}</h2>
       </ion-item>
       <ion-item-options side="right">

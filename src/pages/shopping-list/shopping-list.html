@@ -5,7 +5,9 @@
 </ion-header>
   
 <ion-content padding>
-  <button ion-button (click)="onAddList()">Create new list</button>
+  <ion-fab right bottom>
+    <button ion-fab color="default" (click)="onAddList()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
     <ion-item-sliding
       *ngFor="let list of allLists; let i = index"
