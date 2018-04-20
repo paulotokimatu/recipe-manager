@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { List } from "./models/list.model";
+import { ShoppingList } from "./models/list.model";
 import { ShoppingItem } from "./models/shopping-item.model";
 
 @Injectable()
 export class ShoppingListService {
-  allLists: List[] = [];
+  allLists: ShoppingList[] = [];
 
   constructor() {
-    this.allLists.push(new List('Weekly list', new Date(), [
+    this.allLists.push(new ShoppingList('Weekly list', new Date(), [
       new ShoppingItem('Potato', 4, 0.5, false),
       new ShoppingItem('Meat', 2, 10.5, true)
     ]))
@@ -18,7 +18,7 @@ export class ShoppingListService {
   }
 
   addList(newList) {
-    this.allLists.push(new List(newList.name,
+    this.allLists.push(new ShoppingList(newList.name,
       new Date(),
       newList.items));
   }

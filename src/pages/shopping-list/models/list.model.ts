@@ -1,6 +1,6 @@
 import { ShoppingItem } from "./shopping-item.model";
 
-export class List {
+export class ShoppingList {
   constructor(
     public name: string,
     public date: Date,

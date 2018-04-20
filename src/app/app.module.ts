@@ -16,6 +16,7 @@ import { ShoppingListDetailPage } from '../pages/shopping-list/shopping-list-det
 import { ShoppingListAddPage } from '../pages/shopping-list/shopping-list-add/shopping-list-add';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ShoppingListService } from '../pages/shopping-list/shopping-list.servic
     ShoppingListPage,
     ShoppingListDetailPage,
     ShoppingListAddPage,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
