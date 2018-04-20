@@ -5,16 +5,19 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>{{list?.name}}</h1>
-  <h2>{{list?.date}}</h2>
-  <ion-list *ngFor="let item of list.items">
-    <ion-item>
+  <ion-list>
+    <ion-item *ngFor="let item of list.items" [ngClass]="{'item-checked': item.check}">
       <ion-label>{{item.name}}</ion-label>
-      <h3 item-end>{{item.price * item.quantity | currency:'BRL'}}</h3>      
-      <ion-toggle color="danger" [(ngModel)]="item.check" ></ion-toggle>
-      <!-- <ion-checkbox [(ngModel)]="item.check"></ion-checkbox> -->
+      <h3 item-end>{{item.price * item.quantity | currency:'BRL'}}</h3>
+      <ion-checkbox [(ngModel)]="item.check"></ion-checkbox>
     </ion-item>
   </ion-list>
 
-  <button ion-button (click)="onPrint()">AAA</button>
+  <!-- <button ion-button (click)="onPrint()">AAA</button> -->
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p float-right margin-right>Total: R$100</p>
+  </ion-toolbar>
+</ion-footer>
