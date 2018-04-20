@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
-import { List } from '../models/list.model';
+import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({

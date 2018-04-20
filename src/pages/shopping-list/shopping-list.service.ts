@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ShoppingList } from "./models/list.model";
+import { ShoppingList } from "./models/shopping-list.model";
 import { ShoppingItem } from "./models/shopping-item.model";
 
 @Injectable()

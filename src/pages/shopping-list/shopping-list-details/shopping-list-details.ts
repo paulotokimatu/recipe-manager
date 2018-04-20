@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ShoppingList } from '../models/list.model';
+import { ShoppingList } from '../models/shopping-list.model';
 
 @Component({
-  selector: 'page-shopping-list-detail',
-  templateUrl: 'shopping-list-detail.html'
+  selector: 'page-shopping-list-details',
+  templateUrl: 'shopping-list-details.html'
 })
-export class ShoppingListDetailPage implements OnInit {
+export class ShoppingListDetailsPage implements OnInit {
   shoppingList: ShoppingList;
   numberItemsChecked: number;
   numberItemsTotal: number;

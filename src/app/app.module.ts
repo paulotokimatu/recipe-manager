@@ -12,7 +12,7 @@ import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
-import { ShoppingListDetailPage } from '../pages/shopping-list/shopping-list-detail/shopping-list-detail';
+import { ShoppingListDetailsPage } from '../pages/shopping-list/shopping-list-details/shopping-list-details';
 import { ShoppingListAddPage } from '../pages/shopping-list/shopping-list-add/shopping-list-add';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
@@ -27,7 +27,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     RecipePage,
     AddRecipePage,
     ShoppingListPage,
-    ShoppingListDetailPage,
+    ShoppingListDetailsPage,
     ShoppingListAddPage,
     ProgressBarComponent
   ],
@@ -44,7 +44,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     RecipePage,
     AddRecipePage,
     ShoppingListPage,
-    ShoppingListDetailPage,
+    ShoppingListDetailsPage,
     ShoppingListAddPage,
   ],
   providers: [
