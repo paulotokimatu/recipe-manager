@@ -9,18 +9,22 @@
     <ion-row>
       <img src="http://via.placeholder.com/300x200">
     </ion-row>      
-    <ion-row>
+    <ion-row margin-top>
       <ion-col>
         Difficulty<br>
-        <ion-icon name="star"></ion-icon>
-        {{ recipe.difficulty }}
+        <ion-icon [name]="recipe.difficulty >= 1 ? 'star' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="recipe.difficulty >= 2 ? 'star' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="recipe.difficulty >= 3 ? 'star' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="recipe.difficulty >= 4 ? 'star' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="recipe.difficulty >= 5 ? 'star' : 'star-outline'"></ion-icon>
       </ion-col>
       <ion-col col-6>Servings</ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list>
+  <ion-list margin-top>
     <ion-list-header>Ingredients</ion-list-header>
     <ion-item *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</ion-item>
   </ion-list>
-  <div>{{ recipe.notes }}</div>
+  <ion-list-header>Notes</ion-list-header>
+  <div padding-left>{{ recipe.notes }}</div>
 </ion-content>

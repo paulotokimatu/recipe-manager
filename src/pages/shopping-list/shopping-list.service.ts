@@ -7,7 +7,7 @@ export class ShoppingListService {
   allLists: List[] = [];
 
   constructor() {
-    this.allLists.push(new List('Compras semanais', new Date(), [
+    this.allLists.push(new List('Weekly list', new Date(), [
       new ShoppingItem('Potato', 4, 0.5, false),
       new ShoppingItem('Meat', 2, 10.5, true)
     ]))

@@ -14,10 +14,11 @@
 
 
 <ion-content padding>
-    <ion-fab right bottom>
-      <button ion-fab color="default" (click)="onAddRecipe()"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>
-  <ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="default" (click)="onAddRecipe()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-searchbar (ionInput)="searchItem($event)"></ion-searchbar>
+  <ion-list margin-top>
     <ion-item-sliding
       *ngFor="let recipe of recipes"
       (click)="onLoadRecipe(recipe)">
