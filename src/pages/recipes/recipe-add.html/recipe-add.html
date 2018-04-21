@@ -20,7 +20,7 @@
         <ion-input formControlName="title" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Difficulty</ion-label>
+        <ion-label>Difficulty</ion-label>
         <ion-select formControlName="difficulty">
           <ion-option
             *ngFor="let option of difficultyOptions"
@@ -36,6 +36,6 @@
         <ion-textarea formControlName="notes"></ion-textarea>
       </ion-item>
     </ion-list>
-    <button type="submit" ion-button block>Add recipe</button>
+    <button type="submit" [disabled]="recipeForm.invalid" ion-button block>Add recipe</button>
   </form>
 </ion-content>

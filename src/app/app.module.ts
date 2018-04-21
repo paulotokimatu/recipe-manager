@@ -11,7 +11,7 @@ import { RecipePage } from '../pages/recipes/recipe/recipe';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AddRecipePage } from '../pages/recipes/add-recipe.html/add-recipe';
+import { AddRecipePage } from '../pages/recipes/recipe-add.html/recipe-add';
 import { ShoppingListDetailsPage } from '../pages/shopping-list/shopping-list-details/shopping-list-details';
 import { ShoppingListAddPage } from '../pages/shopping-list/shopping-list-add/shopping-list-add';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';

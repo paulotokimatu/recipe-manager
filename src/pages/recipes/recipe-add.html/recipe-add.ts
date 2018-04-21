@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 
 import { Recipe } from '../recipe.model';
 import { RecipesService } from '../recipes.service';
 
 @Component({
-  selector: 'page-add-recipe',
-  templateUrl: 'add-recipe.html'
+  selector: 'page-recipe-add',
+  templateUrl: 'recipe-add.html'
 })
 export class AddRecipePage implements OnInit {
   recipeForm: FormGroup;
@@ -31,10 +31,10 @@ export class AddRecipePage implements OnInit {
     let notes = null;
 
     this.recipeForm = new FormGroup({
-      'title': new FormControl(title),
-      'difficulty': new FormControl(difficulty),
-      'ingredients': new FormControl(ingredients),
-      'notes': new FormControl(notes),
+      'title': new FormControl(title, Validators.required),
+      'difficulty': new FormControl(difficulty, Validators.required),
+      'ingredients': new FormControl(ingredients, Validators.required),
+      'notes': new FormControl(notes, Validators.required),
     });
   }
 

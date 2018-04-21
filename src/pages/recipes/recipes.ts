@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { RecipePage } from './recipe/recipe';
 import { RecipesService } from './recipes.service';
-import { AddRecipePage } from './add-recipe.html/add-recipe';
+import { AddRecipePage } from './recipe-add.html/recipe-add';
 
 /**
  * Generated class for the RecipesPage page.
