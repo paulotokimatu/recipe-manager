@@ -3,10 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Recipe } from '../recipe.model';
 
 @Component({
-  selector: 'page-recipe',
-  templateUrl: 'recipe.html'
+  selector: 'page-recipe-details',
+  templateUrl: 'recipe-details.html'
 })
-export class RecipePage implements OnInit {
+export class RecipeDetailsPage implements OnInit {
   recipe: Recipe;
 
   constructor(public navCtrl: NavController,
@@ -15,5 +15,6 @@ export class RecipePage implements OnInit {
 
   ngOnInit() {
     this.recipe = this.navParams.get('recipe');
+    console.log(this.recipe.ingredients);
   }
 }

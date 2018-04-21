@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { ContactPage } from '../pages/contact/contact';
-import { RecipePage } from '../pages/recipes/recipe/recipe';
+import { RecipeDetailsPage } from '../pages/recipes/recipe-details/recipe-details';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -24,7 +24,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     ContactPage,
     TabsPage,
     RecipesPage,
-    RecipePage,
+    RecipeDetailsPage,
     AddRecipePage,
     ShoppingListPage,
     ShoppingListDetailsPage,
@@ -41,7 +41,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     ContactPage,
     TabsPage,
     RecipesPage,
-    RecipePage,
+    RecipeDetailsPage,
     AddRecipePage,
     ShoppingListPage,
     ShoppingListDetailsPage,

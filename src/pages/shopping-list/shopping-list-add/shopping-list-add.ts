@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
 
@@ -15,7 +15,8 @@ export class ShoppingListAddPage implements OnInit {
               public navParams: NavParams,
               public viewCtrl: ViewController,
               private fb: FormBuilder,
-              private shoppingListService: ShoppingListService) {
+              private shoppingListService: ShoppingListService,
+              private toastCtrl: ToastController) {
   }
 
   ngOnInit() {
@@ -32,15 +33,6 @@ export class ShoppingListAddPage implements OnInit {
     });
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
-  }
-
-  onSubmit() {
-    this.shoppingListService.addList(this.shoppingListForm.value);
-    this.viewCtrl.dismiss(true);
-  }
-
   buildItem(name: string, quantity: number, price: number) {
     return new FormGroup({
       name: new FormControl(name, Validators.required),
@@ -53,5 +45,20 @@ export class ShoppingListAddPage implements OnInit {
   removeItem(indexItemToRemove) {
     let items = <FormArray>this.shoppingListForm.controls.items;
     items.removeAt(indexItemToRemove);
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  onSubmit() {
+    this.shoppingListService.addList(this.shoppingListForm.value);
+    let toast = this.toastCtrl.create({
+      message: 'Shopping list was created successfully',
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+    this.viewCtrl.dismiss(true);
   }
 }

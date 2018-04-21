@@ -28,13 +28,33 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label floating>Ingredients</ion-label>
-        <ion-input formControlName="ingredients" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
         <ion-label floating>Notes</ion-label>
         <ion-textarea formControlName="notes"></ion-textarea>
       </ion-item>
+      <ion-card *ngFor="let ingredient of recipeForm.get('ingredients').controls; let i=index" [formGroup]="ingredient">
+        <ion-card-content>
+          <ion-buttons end>
+            <button type="button" color="danger" no-padding	ion-button clear (click)="removeIngredient(i)">Remove</button>
+          </ion-buttons>
+          <ion-list inset>
+            <ion-item>
+              <ion-label fixed>Name</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label fixed>Quantity</ion-label>
+              <ion-input type="number" formControlName="quantity"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label fixed>Price per unit</ion-label>
+              <ion-input type="number" formControlName="price"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-buttons end>
+        <button type="button" ion-button clear (click)="recipeForm.get('ingredients').push(buildIngredient('', '', ''))">New item</button>
+      </ion-buttons>
     </ion-list>
     <button type="submit" [disabled]="recipeForm.invalid" ion-button block>Add recipe</button>
   </form>

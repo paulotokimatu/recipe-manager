@@ -23,7 +23,10 @@
   </ion-grid>
   <ion-list margin-top>
     <ion-list-header>Ingredients</ion-list-header>
-    <ion-item *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</ion-item>
+    <ion-item *ngFor="let ingredient of recipe.ingredients">
+      <ion-label>{{ ingredient.name }}</ion-label>
+      <h2 item-end> {{ ingredient.quantity }}</h2>
+    </ion-item>
   </ion-list>
   <ion-list-header>Notes</ion-list-header>
   <div padding-left>{{ recipe.notes }}</div>

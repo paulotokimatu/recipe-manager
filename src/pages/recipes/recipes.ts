@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
-import { RecipePage } from './recipe/recipe';
+import { RecipeDetailsPage } from './recipe-details/recipe-details';
 import { RecipesService } from './recipes.service';
 import { AddRecipePage } from './recipe-add.html/recipe-add';
 
@@ -35,7 +35,7 @@ export class RecipesPage {
   }
 
   onLoadRecipe(recipe) {
-    this.navCtrl.push(RecipePage, {recipe: recipe});
+    this.navCtrl.push(RecipeDetailsPage, {recipe: recipe});
   }
 
   onAddRecipe() {

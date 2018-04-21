@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 
 import { Recipe } from '../recipe.model';
@@ -13,7 +13,8 @@ export class AddRecipePage implements OnInit {
   recipeForm: FormGroup;
   difficultyOptions = [1, 2, 3, 4, 5];
 
-  constructor(public navCtrl: NavController,
+  constructor(private fb: FormBuilder,
+              public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
               public viewCtrl: ViewController,
@@ -30,12 +31,25 @@ export class AddRecipePage implements OnInit {
     let ingredients = null;
     let notes = null;
 
-    this.recipeForm = new FormGroup({
-      'title': new FormControl(title, Validators.required),
-      'difficulty': new FormControl(difficulty, Validators.required),
-      'ingredients': new FormControl(ingredients, Validators.required),
-      'notes': new FormControl(notes, Validators.required),
+    this.recipeForm = this.fb.group({
+      title: [title, Validators.required],
+      difficulty: [difficulty, Validators.required],
+      ingredients: this.fb.array([this.buildIngredient('', null, null)]),
+      notes: [notes]
     });
+  }
+
+  buildIngredient(name: string, quantity: number, price: number) {
+    return new FormGroup({
+      name: new FormControl(name, Validators.required),
+      quantity: new FormControl(quantity, Validators.required),
+      price: new FormControl(price, Validators.required)
+    })
+  }
+
+  removeIngredient(indexItemToRemove) {
+    let items = <FormArray>this.recipeForm.controls.ingredients;
+    items.removeAt(indexItemToRemove);
   }
 
   dismiss() {
