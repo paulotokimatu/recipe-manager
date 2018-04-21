@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
@@ -9,7 +9,7 @@ import { ShoppingListService } from '../shopping-list.service';
   templateUrl: 'shopping-list-add.html'
 })
 export class ShoppingListAddPage implements OnInit {
-  listForm: FormGroup;
+  shoppingListForm: FormGroup;
   
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,15 +26,10 @@ export class ShoppingListAddPage implements OnInit {
     let name = null;
     let items = null;
 
-    this.listForm = this.fb.group({
-      name: [''],
-      items: this.fb.array([this.buildItem('', 1, 0)])
+    this.shoppingListForm = this.fb.group({
+      name: ['', Validators.required],
+      items: this.fb.array([this.buildItem('', null, null)])
     });
-
-    /* this.listForm = new FormGroup({
-      'name': new FormControl(name),
-      'items': new FormControl(items)
-    }); */
   }
 
   dismiss() {
@@ -42,16 +37,21 @@ export class ShoppingListAddPage implements OnInit {
   }
 
   onSubmit() {
-    this.shoppingListService.addList(this.listForm.value);
+    this.shoppingListService.addList(this.shoppingListForm.value);
     this.viewCtrl.dismiss(true);
   }
 
   buildItem(name: string, quantity: number, price: number) {
     return new FormGroup({
-      name: new FormControl(name),
-      quantity: new FormControl(quantity),
-      price: new FormControl(price),
+      name: new FormControl(name, Validators.required),
+      quantity: new FormControl(quantity, Validators.required),
+      price: new FormControl(price, Validators.required),
       check: new FormControl(false)
     })
+  }
+
+  removeItem(indexItemToRemove) {
+    let items = <FormArray>this.shoppingListForm.controls.items;
+    items.removeAt(indexItemToRemove);
   }
 }

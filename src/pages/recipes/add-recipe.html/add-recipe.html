@@ -20,10 +20,6 @@
         <ion-input formControlName="title" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Description</ion-label>
-        <ion-textarea formControlName="description"></ion-textarea>
-      </ion-item>
-      <ion-item>
         <ion-label floating>Difficulty</ion-label>
         <ion-select formControlName="difficulty">
           <ion-option
@@ -32,17 +28,14 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label floating>Steps</ion-label>
-        <ion-textarea formControlName="steps"></ion-textarea>
-      </ion-item>
-      <ion-item>
         <ion-label floating>Ingredients</ion-label>
         <ion-input formControlName="ingredients" type="text"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label floating>Notes</ion-label>
+        <ion-textarea formControlName="notes"></ion-textarea>
+      </ion-item>
     </ion-list>
-    <button
-    type="submit"
-    ion-button
-    block>Add recipe</button>
+    <button type="submit" ion-button block>Add recipe</button>
   </form>
 </ion-content>

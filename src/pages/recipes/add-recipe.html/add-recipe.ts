@@ -26,17 +26,15 @@ export class AddRecipePage implements OnInit {
 
   initializeForm() {
     let title = null;
-    let description = null;
     let difficulty = 0;
-    let steps = null
     let ingredients = null;
+    let notes = null;
 
     this.recipeForm = new FormGroup({
       'title': new FormControl(title),
-      'description': new FormControl(description),
       'difficulty': new FormControl(difficulty),
-      'steps': new FormControl(steps),
-      'ingredients': new FormControl(ingredients)
+      'ingredients': new FormControl(ingredients),
+      'notes': new FormControl(notes),
     });
   }
 

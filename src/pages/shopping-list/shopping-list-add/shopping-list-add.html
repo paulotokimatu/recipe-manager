@@ -13,30 +13,35 @@
 </ion-header>
   
 <ion-content padding>
-  <form [formGroup]="listForm" (ngSubmit)="onSubmit()">
-    <ion-item>
+  <form [formGroup]="shoppingListForm" (ngSubmit)="onSubmit()">
+    <ion-item margin-bottom>
       <ion-label floating>Title of the list</ion-label>
       <ion-input formControlName="name" type="text"></ion-input>
     </ion-item>
-    <div *ngFor="let item of listForm.get('items').controls; let i=index" [formGroup]="item">
-      <ion-item>
-        <ion-label>Name</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Quantity</ion-label>
-        <ion-input type="text" formControlName="quantity"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Price</ion-label>
-        <ion-input type="text" formControlName="price"></ion-input>
-      </ion-item>
-    </div>
-    <button type="button" ion-button (click)="listForm.get('items').push(buildItem('', 1, 0))">New item</button>    
-
-    <button
-      type="submit"
-      ion-button
-      block>Create list</button>
+    <ion-card *ngFor="let item of shoppingListForm.get('items').controls; let i=index" [formGroup]="item">
+      <ion-card-content>
+        <ion-buttons end>
+          <button type="button" color="danger" no-padding	ion-button clear (click)="removeItem(i)">Remove</button>
+        </ion-buttons>
+        <ion-list inset>
+          <ion-item>
+            <ion-label fixed>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label fixed>Quantity</ion-label>
+            <ion-input type="number" formControlName="quantity"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label fixed>Price per unit</ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-buttons end>
+      <button type="button" ion-button clear (click)="shoppingListForm.get('items').push(buildItem('', '', ''))">New item</button>
+    </ion-buttons>
+    <button type="submit" [disabled]="shoppingListForm.invalid" ion-button block margin-top>Create list</button>
   </form>
 </ion-content>
