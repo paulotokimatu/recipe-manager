@@ -10,6 +10,7 @@ export class ShoppingListDetailsPage implements OnInit {
   shoppingList: ShoppingList;
   numberItemsChecked: number;
   numberItemsTotal: number;
+  totalPrice: number;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
@@ -19,6 +20,7 @@ export class ShoppingListDetailsPage implements OnInit {
     this.shoppingList = this.navParams.get('list');
     this.numberItemsTotal = this.shoppingList.items.length;
     this.countItemsChecked();
+    this.sumTotalPrice();
   }
 
   countItemsChecked() {
@@ -27,6 +29,13 @@ export class ShoppingListDetailsPage implements OnInit {
       if (item.check) {
         this.numberItemsChecked++;
       }
+    });
+  }
+
+  sumTotalPrice() {
+    this.totalPrice = 0;
+    this.shoppingList.items.forEach(item => {
+      this.totalPrice += item.price * item.quantity;
     });
   }
 }
