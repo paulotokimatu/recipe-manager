@@ -27,7 +27,8 @@ export class ShoppingListService {
     this.allLists.splice(index, 1);
   }
 
-  addIngredientsToList(ingredients: Ingredient[], listIndex: number) {
-    this.allLists[listIndex].items = [...this.allLists[listIndex].items, ...ingredients];
+  addIngredientsToList(ingredients: Ingredient[], index: number) {
+    console.log('teste2');
+    this.allLists[index].items = [...this.allLists[index].items, ...ingredients];
   }
 }

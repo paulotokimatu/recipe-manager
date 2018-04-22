@@ -28,18 +28,10 @@
       <h2 item-end> {{ ingredient.quantity }}</h2>
     </ion-item>
     <ion-buttons end>
-      <button type="button" ion-button outline margin-top (click)="addIngredientsToShoppingList()">
+      <button type="button" ion-button outline margin-top (click)="onOpenShoppingListChoosing()">
         Add to shopping list
       </button>
     </ion-buttons>
-    <ion-item>
-      <ion-label>Shopping list</ion-label>
-      <ion-select>
-        <ion-option *ngFor="let option of allShoppingList; let i = index" [value]="option">
-          {{ option.name }}
-        </ion-option>
-      </ion-select>
-    </ion-item>
     
   </ion-list>
   <ion-list-header>Notes</ion-list-header>

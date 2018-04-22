@@ -44,7 +44,7 @@ export class RecipesPage {
     modal.onDidDismiss((data) => {
       if (!data) return;
       this.onLoadAllRecipes();
-    })
+    });
   }
 
   onRemoveRecipe(i: number) {

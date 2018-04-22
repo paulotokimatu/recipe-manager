@@ -26,7 +26,7 @@ export class ShoppingListDetailsPage implements OnInit {
   countItemsChecked() {
     this.numberItemsChecked = 0;
     this.shoppingList.items.forEach(item => {
-      if (item.check) {
+      if (item.checked) {
         this.numberItemsChecked++;
       }
     });

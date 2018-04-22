@@ -17,6 +17,7 @@ import { ShoppingListAddPage } from '../pages/shopping-list/shopping-list-add/sh
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { ShoppingListChoosingModal } from '../pages/recipes/recipe-details/shopping-list-choosing/shopping-list-choosing';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     ShoppingListPage,
     ShoppingListDetailsPage,
     ShoppingListAddPage,
+    ShoppingListChoosingModal,
     ProgressBarComponent
   ],
   imports: [
@@ -46,6 +48,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     ShoppingListPage,
     ShoppingListDetailsPage,
     ShoppingListAddPage,
+    ShoppingListChoosingModal
   ],
   providers: [
     StatusBar,

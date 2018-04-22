@@ -38,7 +38,7 @@ export class ShoppingListAddPage implements OnInit {
       name: new FormControl(name, Validators.required),
       quantity: new FormControl(quantity, Validators.required),
       price: new FormControl(price, Validators.required),
-      check: new FormControl(false)
+      checked: new FormControl(false)
     })
   }
 
