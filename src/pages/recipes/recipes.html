@@ -17,7 +17,7 @@
   <ion-fab right bottom>
     <button ion-fab color="default" (click)="onAddRecipe()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-  <ion-searchbar (ionInput)="searchItem($event)"></ion-searchbar>
+  <ion-searchbar debounce="500" (ionInput)="onSearchRecipe($event)"></ion-searchbar>
   <div text-center margin-top *ngIf="recipes.length <= 0">
     <h1><ion-icon name="alert"></ion-icon></h1>
     No recipe found. You can create one by clicking in the button below.

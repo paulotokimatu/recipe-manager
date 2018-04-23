@@ -3,6 +3,7 @@ import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angu
 import { RecipeDetailsPage } from './recipe-details/recipe-details';
 import { RecipesService } from './recipes.service';
 import { AddRecipePage } from './recipe-add.html/recipe-add';
+import { Recipe } from './recipe.model';
 
 /**
  * Generated class for the RecipesPage page.
@@ -17,7 +18,7 @@ import { AddRecipePage } from './recipe-add.html/recipe-add';
   templateUrl: 'recipes.html',
 })
 export class RecipesPage {
-  recipes = [];
+  recipes: Recipe[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -37,6 +38,34 @@ export class RecipesPage {
     this.navCtrl.push(RecipeDetailsPage, {recipe: recipe, recipeIndex: recipeIndex});
   }
 
+  onSearchRecipe(event) {
+    this.onLoadAllRecipes();
+
+    if (!event.target.value) {
+      return;
+    }
+
+    const query: string = event.target.value.toLowerCase();
+    this.filterRecipesByName(query);
+  }
+
+  private filterRecipesByName(query) {
+    const found: Recipe[] = [];
+
+    this.recipes.forEach((recipe) => {
+      if (recipe.title.toLowerCase().startsWith(query)) {
+        found.push(recipe);
+      }
+    });
+
+    this.recipes = found;
+  }
+
+  onRemoveRecipe(i: number) {
+    this.recipesService.removeRecipe(i);
+    this.onLoadAllRecipes();
+  }
+
   onAddRecipe() {
     let modal = this.modalCtrl.create(AddRecipePage);
     modal.present();
@@ -44,10 +73,5 @@ export class RecipesPage {
       if (!data) return;
       this.onLoadAllRecipes();
     });
-  }
-
-  onRemoveRecipe(i: number) {
-    this.recipesService.removeRecipe(i);
-    this.onLoadAllRecipes();
   }
 }
