@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShoppingList } from '../models/shopping-list.model';
+import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
   selector: 'page-shopping-list-details',
@@ -8,12 +9,14 @@ import { ShoppingList } from '../models/shopping-list.model';
 })
 export class ShoppingListDetailsPage implements OnInit {
   shoppingList: ShoppingList;
+  shoppingListIndex: number;
   numberItemsChecked: number;
   numberItemsTotal: number;
   totalPrice: number;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public shoppingListService: ShoppingListService) {
   }
 
   ngOnInit() {
@@ -37,5 +40,10 @@ export class ShoppingListDetailsPage implements OnInit {
     this.shoppingList.items.forEach(item => {
       this.totalPrice += item.price * item.quantity;
     });
+  }
+
+  onRemoveShoppingList() {
+    this.shoppingListService.removeList(this.shoppingListIndex);
+    this.navCtrl.pop();
   }
 }

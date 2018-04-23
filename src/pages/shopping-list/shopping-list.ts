@@ -11,14 +11,14 @@ import { ShoppingListService } from "./shopping-list.service";
   templateUrl: 'shopping-list.html',
 })
 export class ShoppingListPage {
-  allLists = [];
+  allLists: ShoppingList[] = [];
 
   constructor(public shoppingListService: ShoppingListService,
               public navCtrl: NavController,
               public modalCtrl: ModalController,) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.onLoadAllLists();
   }
 
@@ -26,8 +26,8 @@ export class ShoppingListPage {
     this.allLists = this.shoppingListService.getLists();
   }
 
-  onLoadList(list: ShoppingList) {
-    this.navCtrl.push(ShoppingListDetailsPage, {list: list});
+  onLoadList(list: ShoppingList, shoppingListIndex: number) {
+    this.navCtrl.push(ShoppingListDetailsPage, {list: list, shoppingListIndex: shoppingListIndex});
   }
 
   onAddList() {

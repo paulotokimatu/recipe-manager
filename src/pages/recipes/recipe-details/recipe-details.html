@@ -1,6 +1,11 @@
 <ion-header>    
   <ion-navbar>
     <ion-title>{{ recipe.title }}</ion-title>
+    <ion-buttons end>
+      <button type="button" ion-button color="danger" (click)="onRemoveRecipe()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

@@ -25,8 +25,7 @@ export class RecipesPage {
               public modalCtrl: ModalController,) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipesPage');
+  ionViewDidEnter() {
     this.onLoadAllRecipes();
   }
 
@@ -34,8 +33,8 @@ export class RecipesPage {
     this.recipes = this.recipesService.getRecipes();
   }
 
-  onLoadRecipe(recipe) {
-    this.navCtrl.push(RecipeDetailsPage, {recipe: recipe});
+  onLoadRecipe(recipe, recipeIndex) {
+    this.navCtrl.push(RecipeDetailsPage, {recipe: recipe, recipeIndex: recipeIndex});
   }
 
   onAddRecipe() {
@@ -48,7 +47,7 @@ export class RecipesPage {
   }
 
   onRemoveRecipe(i: number) {
-    this.recipesService.removeList(i);
+    this.recipesService.removeRecipe(i);
     this.onLoadAllRecipes();
   }
 }

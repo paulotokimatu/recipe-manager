@@ -30,7 +30,7 @@ export class RecipesService {
     ));
   }
 
-  removeList(index: number) {
+  removeRecipe(index: number) {
     this.allRecipes.splice(index, 1);
   }
 }

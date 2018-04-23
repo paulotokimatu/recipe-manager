@@ -6,6 +6,7 @@ import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { ShoppingList } from '../../shopping-list/models/shopping-list.model';
 import { Ingredient } from '../../../components/shared/ingredient.model';
 import { ShoppingListChoosingModal } from './shopping-list-choosing/shopping-list-choosing';
+import { RecipesService } from '../recipes.service';
 
 @Component({
   selector: 'page-recipe-details',
@@ -13,19 +14,27 @@ import { ShoppingListChoosingModal } from './shopping-list-choosing/shopping-lis
 })
 export class RecipeDetailsPage implements OnInit {
   recipe: Recipe;
+  recipeIndex: number;
   allShoppingList: ShoppingList[];
 
   constructor(public modalCtrl: ModalController,
               public navCtrl: NavController,
               public navParams: NavParams,
               public shoppingListService: ShoppingListService,
+              public recipesService: RecipesService,
               public toastCtrl: ToastController,
               private app: App) {}
 
   ngOnInit() {
     this.recipe = this.navParams.get('recipe');
+    this.recipeIndex = this.navParams.get('recipeIndex');
     // TODO maybe remove this property
     this.allShoppingList = this.shoppingListService.getLists();
+  }
+
+  onRemoveRecipe() {
+    this.recipesService.removeRecipe(this.recipeIndex);
+    this.navCtrl.pop();
   }
 
   onOpenShoppingListChoosing() {
@@ -39,18 +48,21 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   addIngredientsToShoppingList(indexShoppingList: number) {
-    console.log('teste1');
     this.shoppingListService.addIngredientsToList(this.recipe.ingredients, indexShoppingList);
 
+    this.openToast(indexShoppingList);
+
+    const tabsNav = this.app.getNavByIdOrName('tabsNav') as Tabs;
+    tabsNav.select(1);
+    this.navCtrl.pop();
+  }
+
+  openToast(indexShoppingList) {
     const toast = this.toastCtrl.create({
       message: 'Ingredients successfully added to shopping list ' + this.allShoppingList[indexShoppingList].name,
       duration: 2000,
       position: 'top'
     });
     toast.present();
-
-    const tabsNav = this.app.getNavByIdOrName('tabsNav') as Tabs;
-    tabsNav.select(1);
-    this.navCtrl.pop();
   }
 }

@@ -28,7 +28,6 @@ export class ShoppingListService {
   }
 
   addIngredientsToList(ingredients: Ingredient[], index: number) {
-    console.log('teste2');
     this.allLists[index].items = [...this.allLists[index].items, ...ingredients];
   }
 }

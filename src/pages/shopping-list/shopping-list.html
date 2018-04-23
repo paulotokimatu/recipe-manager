@@ -8,10 +8,14 @@
   <ion-fab right bottom>
     <button ion-fab color="default" (click)="onAddList()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
+  <div text-center margin-top *ngIf="allLists.length <= 0">
+    <h1><ion-icon name="alert"></ion-icon></h1>
+    No shopping list found. You can create one by clicking in the button below.
+  </div>
   <ion-list>
     <ion-item-sliding
       *ngFor="let list of allLists; let i = index"
-      (click)="onLoadList(list)">
+      (click)="onLoadList(list, i)">
       <ion-item>
         <h2>{{list.name}}</h2>
       </ion-item>
