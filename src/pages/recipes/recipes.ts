@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RecipeDetailsPage } from './recipe-details/recipe-details';
 import { RecipesService } from './recipes.service';
 import { AddRecipePage } from './recipe-add.html/recipe-add';
@@ -20,7 +20,8 @@ import { Recipe } from './recipe.model';
 export class RecipesPage {
   recipes: Recipe[] = [];
 
-  constructor(public navCtrl: NavController,
+  constructor(public alertCtrl: AlertController,
+              public navCtrl: NavController,
               public navParams: NavParams,
               public recipesService: RecipesService,
               public modalCtrl: ModalController,) {
@@ -62,8 +63,23 @@ export class RecipesPage {
   }
 
   onRemoveRecipe(i: number) {
-    this.recipesService.removeRecipe(i);
-    this.onLoadAllRecipes();
+    let alertConfirm = this.alertCtrl.create({
+      title: 'Remove recipe?',
+      message: 'Do you really want to remove this recipe?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.recipesService.removeRecipe(i);
+            this.onLoadAllRecipes();
+          }
+        }
+      ]
+    });
+    alertConfirm.present();
   }
 
   onAddRecipe() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
 
@@ -14,7 +14,8 @@ export class ShoppingListDetailsPage implements OnInit {
   numberItemsTotal: number;
   totalPrice: number;
 
-  constructor(public navCtrl: NavController,
+  constructor(public alertCtrl: AlertController,
+              public navCtrl: NavController,
               public navParams: NavParams,
               public shoppingListService: ShoppingListService) {
   }
@@ -43,7 +44,22 @@ export class ShoppingListDetailsPage implements OnInit {
   }
 
   onRemoveShoppingList() {
-    this.shoppingListService.removeList(this.shoppingListIndex);
-    this.navCtrl.pop();
+    let alertConfirm = this.alertCtrl.create({
+      title: 'Remove shopping list?',
+      message: 'Do you really want to remove this shopping list?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.shoppingListService.removeList(this.shoppingListIndex);
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alertConfirm.present();
   }
 }

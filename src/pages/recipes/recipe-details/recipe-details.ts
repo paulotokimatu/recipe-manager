@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, App, Tabs, ModalController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, App, Tabs, ModalController, ToastController, AlertController } from 'ionic-angular';
 
 import { Recipe } from '../recipe.model';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
@@ -17,7 +17,8 @@ export class RecipeDetailsPage implements OnInit {
   recipeIndex: number;
   allShoppingList: ShoppingList[];
 
-  constructor(public modalCtrl: ModalController,
+  constructor(public alertCtrl: AlertController,
+              public modalCtrl: ModalController,
               public navCtrl: NavController,
               public navParams: NavParams,
               public shoppingListService: ShoppingListService,
@@ -33,8 +34,23 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   onRemoveRecipe() {
-    this.recipesService.removeRecipe(this.recipeIndex);
-    this.navCtrl.pop();
+    let alertConfirm = this.alertCtrl.create({
+      title: 'Remove recipe?',
+      message: 'Do you really want to remove this recipe?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.recipesService.removeRecipe(this.recipeIndex);
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alertConfirm.present();
   }
 
   onOpenShoppingListChoosing() {
