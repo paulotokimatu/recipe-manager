@@ -9,8 +9,8 @@ import { ShoppingListPage } from '../shopping-list/shopping-list';
 })
 export class TabsPage {
 
-  tab1Root = RecipesPage;
-  tab2Root = ShoppingListPage;
+  tab1Root = 'RecipesPage';
+  tab2Root = 'ShoppingListPage';
   tab3Root = ContactPage;
 
   constructor() {

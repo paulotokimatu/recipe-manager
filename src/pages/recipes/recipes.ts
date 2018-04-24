@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RecipeDetailsPage } from './recipe-details/recipe-details';
 import { RecipesService } from './recipes.service';
-import { AddRecipePage } from './recipe-add.html/recipe-add';
+import { RecipeAddPage } from './recipe-add.html/recipe-add';
 import { Recipe } from './recipe.model';
 
 /**
  * Generated class for the RecipesPage page.
  *
- * See https://ionicframework.com/docs/components/#navigation for more info on
+ * See https://ionicframework.com/docs/shared/shared/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
@@ -83,7 +83,7 @@ export class RecipesPage {
   }
 
   onAddRecipe() {
-    let modal = this.modalCtrl.create(AddRecipePage);
+    let modal = this.modalCtrl.create(RecipeAddPage);
     modal.present();
     modal.onDidDismiss((data) => {
       if (!data) return;

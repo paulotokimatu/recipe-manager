@@ -57,7 +57,6 @@ export class ShoppingListPage {
         }
       ]
     });
-    alertConfirm.present();
-    }
+  alertConfirm.present();
   }
 }

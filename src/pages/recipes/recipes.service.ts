@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
-import { Ingredient } from '../../components/shared/ingredient.model';
+import { Ingredient } from '../../shared/models/ingredient.model';
 
 @Injectable()
 export class RecipesService {

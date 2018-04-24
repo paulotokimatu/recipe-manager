@@ -7,48 +7,29 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { ContactPage } from '../pages/contact/contact';
-import { RecipeDetailsPage } from '../pages/recipes/recipe-details/recipe-details';
-import { RecipesPage } from '../pages/recipes/recipes';
 import { RecipesService } from '../pages/recipes/recipes.service';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AddRecipePage } from '../pages/recipes/recipe-add.html/recipe-add';
-import { ShoppingListDetailsPage } from '../pages/shopping-list/shopping-list-details/shopping-list-details';
-import { ShoppingListAddPage } from '../pages/shopping-list/shopping-list-add/shopping-list-add';
-import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
-import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
-import { ShoppingListChoosingModal } from '../pages/recipes/recipe-details/shopping-list-choosing/shopping-list-choosing';
+import { ShoppingListModule } from '../pages/shopping-list/shopping-list.module';
+import { RecipesModule } from '../pages/recipes/recipes.module';
 
 @NgModule({
   declarations: [
     MyApp,
     ContactPage,
     TabsPage,
-    RecipesPage,
-    RecipeDetailsPage,
-    AddRecipePage,
-    ShoppingListPage,
-    ShoppingListDetailsPage,
-    ShoppingListAddPage,
-    ShoppingListChoosingModal,
-    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    RecipesModule,
+    ShoppingListModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     ContactPage,
     TabsPage,
-    RecipesPage,
-    RecipeDetailsPage,
-    AddRecipePage,
-    ShoppingListPage,
-    ShoppingListDetailsPage,
-    ShoppingListAddPage,
-    ShoppingListChoosingModal
   ],
   providers: [
     StatusBar,

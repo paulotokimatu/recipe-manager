@@ -4,7 +4,7 @@ import { NavController, NavParams, App, Tabs, ModalController, ToastController, 
 import { Recipe } from '../recipe.model';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { ShoppingList } from '../../shopping-list/models/shopping-list.model';
-import { Ingredient } from '../../../components/shared/ingredient.model';
+import { Ingredient } from '../../../shared/models/ingredient.model';
 import { ShoppingListChoosingModal } from './shopping-list-choosing/shopping-list-choosing';
 import { RecipesService } from '../recipes.service';
 

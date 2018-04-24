@@ -9,7 +9,7 @@ import { RecipesService } from '../recipes.service';
   selector: 'page-recipe-add',
   templateUrl: 'recipe-add.html'
 })
-export class AddRecipePage implements OnInit {
+export class RecipeAddPage implements OnInit {
   recipeForm: FormGroup;
   difficultyOptions = [1, 2, 3, 4, 5];
 
