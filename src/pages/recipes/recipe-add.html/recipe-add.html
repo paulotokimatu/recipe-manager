@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Add recipe
+      {{ isEditMode ? 'Edit' : 'Add' }} recipe
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -23,7 +23,7 @@
         <ion-label>Difficulty</ion-label>
         <ion-select formControlName="difficulty">
           <ion-option
-            *ngFor="let option of difficultyOptions"
+            *ngFor="let option of [1, 2, 3, 4, 5]"
             [value]="option">{{ option }}</ion-option>
         </ion-select>
       </ion-item>
@@ -53,9 +53,11 @@
         </ion-card-content>
       </ion-card>
       <ion-buttons end>
-        <button type="button" ion-button clear (click)="recipeForm.get('ingredients').push(buildIngredient('', '', ''))">New item</button>
+        <button type="button" ion-button clear (click)="recipeForm.get('ingredients').push(buildIngredient())">New item</button>
       </ion-buttons>
     </ion-list>
-    <button type="submit" [disabled]="recipeForm.invalid" ion-button block>Add recipe</button>
+    <button type="submit" [disabled]="recipeForm.invalid" ion-button block>
+      {{ isEditMode ? 'Edit' : 'Add' }} recipe
+    </button>
   </form>
 </ion-content>

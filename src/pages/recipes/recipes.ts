@@ -83,7 +83,7 @@ export class RecipesPage {
   }
 
   onAddRecipe() {
-    let modal = this.modalCtrl.create(RecipeAddPage);
+    let modal = this.modalCtrl.create(RecipeAddPage, {mode: 'add'});
     modal.present();
     modal.onDidDismiss((data) => {
       if (!data) return;

@@ -7,6 +7,7 @@ import { ShoppingList } from '../../shopping-list/models/shopping-list.model';
 import { Ingredient } from '../../../shared/models/ingredient.model';
 import { ShoppingListChoosingModal } from './shopping-list-choosing/shopping-list-choosing';
 import { RecipesService } from '../recipes.service';
+import { RecipeAddPage } from '../recipe-add.html/recipe-add';
 
 @Component({
   selector: 'page-recipe-details',
@@ -27,8 +28,9 @@ export class RecipeDetailsPage implements OnInit {
               private app: App) {}
 
   ngOnInit() {
-    this.recipe = this.navParams.get('recipe');
+    //this.recipe = this.navParams.get('recipe');
     this.recipeIndex = this.navParams.get('recipeIndex');
+    this.recipe = this.recipesService.getRecipeByIndex(this.recipeIndex);
     // TODO maybe remove this property
     this.allShoppingList = this.shoppingListService.getLists();
   }
@@ -51,6 +53,18 @@ export class RecipeDetailsPage implements OnInit {
       ]
     });
     alertConfirm.present();
+  }
+
+  onEditRecipe() {
+    let modal = this.modalCtrl.create(RecipeAddPage, {
+      mode: 'edit',
+      recipe: this.recipe
+    });
+    modal.present();
+    // modal.onDidDismiss((data) => {
+    //   if (!data) return;
+    //   this.onLoadAllRecipes();
+    // });
   }
 
   onOpenShoppingListChoosing() {

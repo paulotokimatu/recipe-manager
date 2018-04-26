@@ -1,11 +1,11 @@
 <ion-header>    
   <ion-navbar>
-    <ion-title>{{ recipe.title }}</ion-title>
+    <ion-title>{{ recipe.title }} - Recipe</ion-title>
     <ion-buttons end>
       <button type="button" ion-button color="danger" (click)="onRemoveRecipe()">
         <ion-icon name="trash"></ion-icon>
       </button>
-      <button type="button" ion-button (click)="onRemoveRecipe()">
+      <button type="button" ion-button (click)="onEditRecipe()">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>

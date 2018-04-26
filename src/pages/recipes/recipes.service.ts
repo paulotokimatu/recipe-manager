@@ -22,6 +22,10 @@ export class RecipesService {
     return [...this.allRecipes];
   }
 
+  getRecipeByIndex(index: number) {
+    return this.allRecipes[index];
+  }
+
   addRecipe(newRecipe: Recipe) {
     this.allRecipes.push(new Recipe(newRecipe.title,
       newRecipe.difficulty,
@@ -31,6 +35,7 @@ export class RecipesService {
   }
 
   removeRecipe(index: number) {
+    console.log('teste',index);
     this.allRecipes.splice(index, 1);
   }
 }

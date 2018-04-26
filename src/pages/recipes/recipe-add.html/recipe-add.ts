@@ -4,6 +4,7 @@ import { NavController, NavParams, ToastController, ViewController } from 'ionic
 
 import { Recipe } from '../recipe.model';
 import { RecipesService } from '../recipes.service';
+import { Ingredient } from '../../../shared/models/ingredient.model';
 
 @Component({
   selector: 'page-recipe-add',
@@ -11,7 +12,7 @@ import { RecipesService } from '../recipes.service';
 })
 export class RecipeAddPage implements OnInit {
   recipeForm: FormGroup;
-  difficultyOptions = [1, 2, 3, 4, 5];
+  isEditMode: boolean = false;
 
   constructor(private fb: FormBuilder,
               public navCtrl: NavController,
@@ -22,24 +23,52 @@ export class RecipeAddPage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.navParams.get('mode') == 'edit') {
+      this.isEditMode = true;
+    }
     this.initializeForm();
   }
 
   initializeForm() {
-    let title = null;
-    let difficulty = 0;
-    let ingredients = null;
-    let notes = null;
-
+    const initialRecipeData: Recipe = this.buildInitialRecipe();
     this.recipeForm = this.fb.group({
-      title: [title, Validators.required],
-      difficulty: [difficulty, Validators.required],
-      ingredients: this.fb.array([this.buildIngredient('', null, null)]),
-      notes: [notes]
+      title: [initialRecipeData.title, Validators.required],
+      difficulty: [initialRecipeData.difficulty, Validators.required],
+      ingredients: this.fb.array([]),
+      notes: [initialRecipeData.notes]
     });
+
+    this.addIngredientsToForm(initialRecipeData.ingredients);
   }
 
-  buildIngredient(name: string, quantity: number, price: number) {
+  private buildInitialRecipe() {
+    let initialRecipe: Recipe;
+
+    if (this.isEditMode) {
+      initialRecipe = this.navParams.get('recipe');
+    } else {
+      initialRecipe = {
+        title: null,
+        difficulty: 0,
+        ingredients: [],
+        notes: null
+      }
+    }
+    return initialRecipe;
+  }
+
+  addIngredientsToForm(ingredients: Ingredient[]) {
+    let formIngredients = <FormArray>this.recipeForm.controls.ingredients;
+    ingredients.forEach((ingredient) => {
+      formIngredients.push(this.buildIngredient(
+        ingredient.name,
+        ingredient.quantity,
+        ingredient.price
+      ));
+    })
+  }
+
+  buildIngredient(name: string = '', quantity: number = 0, price: number = 0) {
     return new FormGroup({
       name: new FormControl(name, Validators.required),
       quantity: new FormControl(quantity, Validators.required),
@@ -57,7 +86,11 @@ export class RecipeAddPage implements OnInit {
   }
 
   onSubmit() {
-    this.recipesService.addRecipe(this.recipeForm.value);
+    if (this.isEditMode) {
+      // this.recipesService.editRecipe(this.recipeForm.value, this.recipeIndex);
+    } else {
+      this.recipesService.addRecipe(this.recipeForm.value);
+    }
     let toast = this.toastCtrl.create({
       message: 'Recipe was created successfully',
       duration: 2000,
