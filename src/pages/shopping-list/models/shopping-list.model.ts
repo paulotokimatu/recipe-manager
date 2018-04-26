@@ -4,5 +4,6 @@ export class ShoppingList {
   constructor(
     public name: string,
     public date: Date,
-    public items: Ingredient[]) {}
+    public items: Ingredient[],
+    public id?: number,) {}
 }

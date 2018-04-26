@@ -31,6 +31,7 @@ export class RecipeAddPage implements OnInit {
 
   initializeForm() {
     const initialRecipeData: Recipe = this.buildInitialRecipe();
+    
     this.recipeForm = this.fb.group({
       title: [initialRecipeData.title, Validators.required],
       difficulty: [initialRecipeData.difficulty, Validators.required],
@@ -87,7 +88,7 @@ export class RecipeAddPage implements OnInit {
 
   onSubmit() {
     if (this.isEditMode) {
-      // this.recipesService.editRecipe(this.recipeForm.value, this.recipeIndex);
+      this.recipesService.editRecipe(this.navParams.get('recipe').title, this.recipeForm.value);
     } else {
       this.recipesService.addRecipe(this.recipeForm.value);
     }

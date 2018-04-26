@@ -34,8 +34,15 @@ export class RecipesService {
     ));
   }
 
+  editRecipe(recipeTitle: string, newRecipe: Recipe) {
+    this.allRecipes.forEach((recipe, index) => {
+      if (recipe.title === recipeTitle) {
+        this.allRecipes[index] = newRecipe;
+      }
+    });
+  }
+
   removeRecipe(index: number) {
-    console.log('teste',index);
     this.allRecipes.splice(index, 1);
   }
 }

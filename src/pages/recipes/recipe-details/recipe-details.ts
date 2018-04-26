@@ -61,10 +61,11 @@ export class RecipeDetailsPage implements OnInit {
       recipe: this.recipe
     });
     modal.present();
-    // modal.onDidDismiss((data) => {
-    //   if (!data) return;
-    //   this.onLoadAllRecipes();
-    // });
+    modal.onDidDismiss(() => {
+      // Reload data
+      this.recipe = this.recipesService.getRecipeByIndex(this.recipeIndex);
+      console.log(this.recipe);
+    });
   }
 
   onOpenShoppingListChoosing() {

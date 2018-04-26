@@ -6,5 +6,6 @@ export class Recipe {
     public difficulty: number,
     public ingredients: Ingredient[],
     public notes: string,
+    public id?: number,
   ) {}
 }

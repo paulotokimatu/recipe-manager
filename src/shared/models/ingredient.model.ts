@@ -3,6 +3,7 @@ export class Ingredient {
     public name: string,
     public quantity: number,
     public price: number,
-    public checked: boolean
+    public checked: boolean,
+    public id?: number
   ) {}
 }
