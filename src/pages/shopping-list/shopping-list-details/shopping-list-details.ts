@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
+import { ShoppingListAddPage } from '../shopping-list-add/shopping-list-add';
 
 @Component({
   selector: 'page-shopping-list-details',
@@ -15,13 +16,15 @@ export class ShoppingListDetailsPage implements OnInit {
   totalPrice: number;
 
   constructor(public alertCtrl: AlertController,
+              public modalCtrl: ModalController,
               public navCtrl: NavController,
               public navParams: NavParams,
               public shoppingListService: ShoppingListService) {
   }
 
   ngOnInit() {
-    this.shoppingList = this.navParams.get('list');
+    this.shoppingListIndex = this.navParams.get('shoppingListIndex');
+    this.shoppingList = this.shoppingListService.getListByIndex(this.shoppingListIndex);
     this.numberItemsTotal = this.shoppingList.items.length;
     this.countItemsChecked();
     this.sumTotalPrice();
@@ -40,6 +43,21 @@ export class ShoppingListDetailsPage implements OnInit {
     this.totalPrice = 0;
     this.shoppingList.items.forEach(item => {
       this.totalPrice += item.price * item.quantity;
+    });
+  }
+
+  onEditShoppingList() {
+    let modal = this.modalCtrl.create(ShoppingListAddPage, {
+      mode: 'edit',
+      shoppingList: this.shoppingList
+    });
+    modal.present();
+    modal.onDidDismiss(() => {
+      // Reload data
+      this.shoppingList = this.shoppingListService.getListByIndex(this.shoppingListIndex);
+      this.numberItemsTotal = this.shoppingList.items.length;
+      this.countItemsChecked();
+      this.sumTotalPrice();
     });
   }
 

@@ -17,10 +17,22 @@ export class ShoppingListService {
     return [...this.allLists];
   }
 
+  getListByIndex(index) {
+    return this.allLists[index];
+  }
+
   addList(newList) {
     this.allLists.push(new ShoppingList(newList.name,
       new Date(),
       newList.items));
+  }
+
+  editList(listTitle: string, newList: ShoppingList) {
+    this.allLists.forEach((list, index) => {
+      if (list.name === listTitle) {
+        this.allLists[index] = newList;
+      }
+    });
   }
 
   removeList(index: number) {

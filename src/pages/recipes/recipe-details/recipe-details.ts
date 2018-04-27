@@ -28,7 +28,6 @@ export class RecipeDetailsPage implements OnInit {
               private app: App) {}
 
   ngOnInit() {
-    //this.recipe = this.navParams.get('recipe');
     this.recipeIndex = this.navParams.get('recipeIndex');
     this.recipe = this.recipesService.getRecipeByIndex(this.recipeIndex);
     // TODO maybe remove this property
@@ -64,7 +63,6 @@ export class RecipeDetailsPage implements OnInit {
     modal.onDidDismiss(() => {
       // Reload data
       this.recipe = this.recipesService.getRecipeByIndex(this.recipeIndex);
-      console.log(this.recipe);
     });
   }
 

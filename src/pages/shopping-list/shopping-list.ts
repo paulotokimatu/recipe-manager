@@ -32,7 +32,7 @@ export class ShoppingListPage {
   }
 
   onAddList() {
-    let modal = this.modalCtrl.create(ShoppingListAddPage);
+    let modal = this.modalCtrl.create(ShoppingListAddPage, {mode: 'add'});
     modal.present();
     modal.onDidDismiss((data) => {
       if (!data) return;

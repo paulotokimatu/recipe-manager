@@ -93,7 +93,7 @@ export class RecipeAddPage implements OnInit {
       this.recipesService.addRecipe(this.recipeForm.value);
     }
     let toast = this.toastCtrl.create({
-      message: 'Recipe was created successfully',
+      message: 'Recipe was saved successfully',
       duration: 2000,
       position: 'top'
     });
