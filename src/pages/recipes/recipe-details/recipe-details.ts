@@ -67,17 +67,17 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   onOpenShoppingListChoosing() {
-    let modal = this.modalCtrl.create(ShoppingListChoosingModal);
+    let modal = this.modalCtrl.create(ShoppingListChoosingModal, {ingredients: this.recipe.ingredients});
     modal.present();
-    modal.onDidDismiss((indexShoppingList) => {
-      if (typeof indexShoppingList === 'number') {
-        this.addIngredientsToShoppingList(indexShoppingList);
+    modal.onDidDismiss((data) => {
+      if (typeof data.indexShoppingList === 'number') {
+        this.addIngredientsToShoppingList(data.ingredientsToAdd, data.indexShoppingList);
       }
     });
   }
 
-  addIngredientsToShoppingList(indexShoppingList: number) {
-    this.shoppingListService.addIngredientsToList(this.recipe.ingredients, indexShoppingList);
+  addIngredientsToShoppingList(ingredientsToAdd: Ingredient[], indexShoppingList: number) {
+    this.shoppingListService.addIngredientsToList(ingredientsToAdd, indexShoppingList);
 
     this.openToast(indexShoppingList);
 
