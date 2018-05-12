@@ -4,6 +4,7 @@ import { ShoppingListAddPage } from "./shopping-list-add/shopping-list-add";
 import { ShoppingListDetailsPage } from "./shopping-list-details/shopping-list-details";
 import { ShoppingList } from "./models/shopping-list.model";
 import { ShoppingListService } from "./shopping-list.service";
+import { Subscription } from "rxjs/Subscription";
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import { ShoppingListService } from "./shopping-list.service";
   templateUrl: 'shopping-list.html',
 })
 export class ShoppingListPage {
+  allListsSub: Subscription;
   allLists: ShoppingList[] = [];
 
   constructor(public alertCtrl: AlertController,
@@ -20,11 +22,15 @@ export class ShoppingListPage {
   }
 
   ionViewDidEnter() {
+    this.allListsSub = this.shoppingListService.allListsChanged
+      .subscribe((allLists) => {
+        this.allLists = allLists;
+      });
     this.onLoadAllLists();
   }
 
   onLoadAllLists() {
-    this.allLists = this.shoppingListService.getLists();
+    this.shoppingListService.loadData();
   }
 
   onLoadList(list: ShoppingList, shoppingListIndex: number) {

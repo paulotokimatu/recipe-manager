@@ -4,6 +4,7 @@ import { RecipeDetailsPage } from './recipe-details/recipe-details';
 import { RecipesService } from './recipes.service';
 import { RecipeAddPage } from './recipe-add.html/recipe-add';
 import { Recipe } from './recipe.model';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Generated class for the RecipesPage page.
@@ -18,6 +19,7 @@ import { Recipe } from './recipe.model';
   templateUrl: 'recipes.html',
 })
 export class RecipesPage {
+  recipesSub: Subscription;
   recipes: Recipe[] = [];
 
   constructor(public alertCtrl: AlertController,
@@ -28,7 +30,11 @@ export class RecipesPage {
   }
 
   ionViewDidEnter() {
-    this.onLoadAllRecipes();
+    this.recipesSub = this.recipesService.allRecipesChanged
+      .subscribe((recipes) => {
+        this.recipes = recipes;
+      });
+    this.recipesService.loadData();
   }
 
   onLoadAllRecipes() {

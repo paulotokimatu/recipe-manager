@@ -1,16 +1,25 @@
 import { Injectable } from "@angular/core";
+import { Storage } from "@ionic/storage";
 import { ShoppingList } from "./models/shopping-list.model";
 import { Ingredient } from "../../shared/models/ingredient.model";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class ShoppingListService {
+  allListsChanged = new Subject<ShoppingList[]>();
   allLists: ShoppingList[] = [];
 
-  constructor() {
-    this.allLists.push(new ShoppingList('Weekly list', new Date(), [
-      new Ingredient('Potato', 4, 0.5, false),
-      new Ingredient('Meat', 2, 10.5, true)
-    ]))
+  constructor(private storage: Storage) {}
+
+  loadData() {
+    return this.storage.get('shopping-list')
+      .then((data) => {
+        this.allLists = data != null ? data : [];
+        this.allListsChanged.next(this.allLists);
+      })
+      .catch(() => {
+
+      });
   }
 
   getLists() {
@@ -22,9 +31,8 @@ export class ShoppingListService {
   }
 
   addList(newList) {
-    this.allLists.push(new ShoppingList(newList.name,
-      new Date(),
-      newList.items));
+    this.allLists.push(new ShoppingList(newList.name, new Date(), newList.items));
+    this.saveData();
   }
 
   editList(listTitle: string, newList: ShoppingList) {
@@ -33,13 +41,25 @@ export class ShoppingListService {
         this.allLists[index] = newList;
       }
     });
+    this.saveData();
   }
 
   removeList(index: number) {
     this.allLists.splice(index, 1);
+    this.saveData();
   }
 
   addIngredientsToList(ingredients: Ingredient[], index: number) {
     this.allLists[index].items = [...this.allLists[index].items, ...ingredients];
+    this.saveData();
+  }
+
+  private saveData() {
+    this.storage.set('shopping-list', this.allLists)
+      .then(() => {
+      })
+      .catch(() => {
+        console.log('test');
+      });
   }
 }
