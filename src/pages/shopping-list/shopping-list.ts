@@ -40,7 +40,9 @@ export class ShoppingListPage {
     })
   }
 
-  onRemoveList(i: number) {
+  onRemoveList(event, i: number) {
+    event.stopPropagation();
+
     let alertConfirm = this.alertCtrl.create({
       title: 'Remove shopping list?',
       message: 'Do you really want to remove this shopping list?',

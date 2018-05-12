@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      {{ isEditMode ? 'Edit' : 'Add' }} recipe
+      {{ isEditMode ? 'Edit' : 'Create' }} recipe
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -54,7 +54,7 @@
       </ion-card>
       <ion-buttons end>
         <button type="button" ion-button clear (click)="addIngredientsToForm([{
-          title: '',
+          name: '',
           quantity: 0,
           price: 0,
           checked: false
@@ -62,7 +62,7 @@
       </ion-buttons>
     </ion-list>
     <button type="submit" [disabled]="recipeForm.invalid" ion-button block>
-      {{ isEditMode ? 'Edit' : 'Add' }} recipe
+      {{ isEditMode ? 'Edit' : 'Create' }} recipe
     </button>
   </form>
 </ion-content>

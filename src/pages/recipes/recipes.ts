@@ -62,7 +62,9 @@ export class RecipesPage {
     this.recipes = found;
   }
 
-  onRemoveRecipe(i: number) {
+  onRemoveRecipe(event, i: number) {
+    event.stopPropagation();
+
     let alertConfirm = this.alertCtrl.create({
       title: 'Remove recipe?',
       message: 'Do you really want to remove this recipe?',
