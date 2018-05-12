@@ -20,7 +20,7 @@
         <h2>{{list.name}}</h2>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="onRemoveList(i)">
+        <button ion-button color="danger" (click)="onRemoveList($event, i)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>

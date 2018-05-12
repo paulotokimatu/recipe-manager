@@ -25,7 +25,7 @@
         <h2>{{recipe.title}}</h2>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="onRemoveRecipe(i)">
+        <button ion-button color="danger" (click)="onRemoveRecipe($event, i)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
