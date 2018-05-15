@@ -30,10 +30,9 @@ export class RecipesPage {
   }
 
   ionViewDidEnter() {
-    this.recipesSub = this.recipesService.allRecipesChanged
-      .subscribe((recipes) => {
-        this.recipes = recipes;
-      });
+    this.recipesSub = this.recipesService.allRecipesChanged.subscribe((recipes) => {
+      this.recipes = recipes;
+    });
     this.recipesService.loadData();
   }
 
@@ -60,7 +59,7 @@ export class RecipesPage {
     const found: Recipe[] = [];
 
     this.recipes.forEach((recipe) => {
-      if (recipe.title.toLowerCase().startsWith(query)) {
+      if (recipe.name.toLowerCase().startsWith(query)) {
         found.push(recipe);
       }
     });
@@ -68,12 +67,12 @@ export class RecipesPage {
     this.recipes = found;
   }
 
-  onRemoveRecipe(event, i: number) {
+  onRemoveRecipe(event, recipeName: string, i: number) {
     event.stopPropagation();
 
     let alertConfirm = this.alertCtrl.create({
       title: 'Remove recipe?',
-      message: 'Do you really want to remove this recipe?',
+      message: 'Do you really want to remove ' + recipeName + '?',
       buttons: [
         {
           text: 'Cancel'
@@ -93,9 +92,9 @@ export class RecipesPage {
   onAddRecipe() {
     let modal = this.modalCtrl.create(RecipeAddPage, {mode: 'add'});
     modal.present();
-    modal.onDidDismiss((data) => {
-      if (!data) return;
-      this.onLoadAllRecipes();
-    });
+    // modal.onDidDismiss((data) => {
+    //   if (!data) return;
+    //   this.onLoadAllRecipes();
+    // });
   }
 }

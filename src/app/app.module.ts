@@ -13,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ShoppingListService } from '../pages/shopping-list/shopping-list.service';
 import { ShoppingListModule } from '../pages/shopping-list/shopping-list.module';
 import { RecipesModule } from '../pages/recipes/recipes.module';
+import { HelperService } from '../shared/services/helper.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RecipesModule } from '../pages/recipes/recipes.module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RecipesService,
     ShoppingListService,
+    HelperService
   ]
 })
 export class AppModule {}

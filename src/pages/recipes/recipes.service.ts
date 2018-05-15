@@ -3,23 +3,14 @@ import { Storage } from '@ionic/storage';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../../shared/models/ingredient.model';
 import { Subject } from 'rxjs/Subject';
+import { HelperService } from '../../shared/services/helper.service';
 
 @Injectable()
 export class RecipesService {
   allRecipesChanged = new Subject<Recipe[]>();
   allRecipes: Recipe[] = [];
 
-  constructor(private storage: Storage) {
-    // this.allRecipes.push(new Recipe('Banana bread', 1, [
-    //   new Ingredient('Potato', 4, 0.5, false),
-    //   new Ingredient('Meat', 2, 10.5, false)
-    // ], 'lorem ipsum'));
-
-    // this.allRecipes.push(new Recipe('German pizza', 1, [
-    //   new Ingredient('Potato', 4, 0.5, false),
-    //   new Ingredient('Meat', 2, 10.5, false)
-    // ], 'lorem ipsum'));
-  }
+  constructor(private storage: Storage, private helperService: HelperService) {}
 
   loadData() {
     return this.storage.get('recipes')
@@ -28,7 +19,7 @@ export class RecipesService {
         this.allRecipesChanged.next(this.allRecipes);
       })
       .catch(() => {
-
+        this.helperService.createToast('Something went wrong, please try again', 'toast-error');
       });
   }
 
@@ -41,34 +32,40 @@ export class RecipesService {
   }
 
   addRecipe(newRecipe: Recipe) {
-    this.allRecipes.push(new Recipe(newRecipe.title,
+    let copyAllRecipes = this.getRecipes();
+    copyAllRecipes.push(new Recipe(newRecipe.name,
       newRecipe.difficulty,
+      newRecipe.servings,
       newRecipe.ingredients,
       newRecipe.notes,
     ));
-    this.saveData();
+    this.saveData(copyAllRecipes);
   }
 
-  editRecipe(recipeTitle: string, newRecipe: Recipe) {
-    this.allRecipes.forEach((recipe, index) => {
-      if (recipe.title === recipeTitle) {
-        this.allRecipes[index] = newRecipe;
+  editRecipe(recipeName: string, newRecipe: Recipe) {
+    let copyAllRecipes = this.getRecipes();
+    copyAllRecipes.forEach((recipe, index) => {
+      if (recipe.name === recipeName) {
+        copyAllRecipes[index] = newRecipe;
       }
     });
-    this.saveData();
+    this.saveData(copyAllRecipes);
   }
 
   removeRecipe(index: number) {
-    this.allRecipes.splice(index, 1);
-    this.saveData();
+    let copyAllRecipes = this.getRecipes();
+    copyAllRecipes.splice(index, 1);
+    this.saveData(copyAllRecipes);
   }
 
-  private saveData() {
-    this.storage.set('recipes', this.allRecipes)
+  private saveData(copyAllRecipes) {
+    this.storage.set('recipes', copyAllRecipes)
       .then(() => {
+        this.allRecipes = copyAllRecipes;
+        this.allRecipesChanged.next(this.allRecipes);
       })
       .catch(() => {
-        console.log('test');
+        this.helperService.createToast('Something went wrong, please try again', 'toast-error');
       });
   }
 }

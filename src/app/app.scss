@@ -21,3 +21,10 @@ body {
   //font-family: 'Open Sans';
   font-family: 'Lato';
 }
+
+.toast-error {
+  >.toast-wrapper {
+    background-color: color($colors, danger, base);
+    color: white;
+  }
+}

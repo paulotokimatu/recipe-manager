@@ -16,8 +16,8 @@
   <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>
-        <ion-label floating>Title</ion-label>
-        <ion-input formControlName="title" type="text"></ion-input>
+        <ion-label floating>Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Difficulty</ion-label>
@@ -26,6 +26,10 @@
             *ngFor="let option of [1, 2, 3, 4, 5]"
             [value]="option">{{ option }}</ion-option>
         </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Servings</ion-label>
+        <ion-input type="number" formControlName="servings"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Notes</ion-label>

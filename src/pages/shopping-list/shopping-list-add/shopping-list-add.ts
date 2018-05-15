@@ -4,6 +4,7 @@ import { NavController, NavParams, ViewController, ToastController } from 'ionic
 import { ShoppingList } from '../models/shopping-list.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { Ingredient } from '../../../shared/models/ingredient.model';
+import { HelperService } from '../../../shared/services/helper.service';
 
 @Component({
   selector: 'page-shopping-list-add',
@@ -18,7 +19,7 @@ export class ShoppingListAddPage implements OnInit {
               public viewCtrl: ViewController,
               private fb: FormBuilder,
               private shoppingListService: ShoppingListService,
-              private toastCtrl: ToastController) {
+              private helperService: HelperService) {
   }
 
   ngOnInit() {
@@ -89,12 +90,7 @@ export class ShoppingListAddPage implements OnInit {
     } else {
       this.shoppingListService.addList(this.shoppingListForm.value);
     }
-    let toast = this.toastCtrl.create({
-      message: 'Shopping list was saved successfully',
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present();
+    this.helperService.createToast('The Shopping List was saved successfully');
     this.viewCtrl.dismiss(true);
   }
 }

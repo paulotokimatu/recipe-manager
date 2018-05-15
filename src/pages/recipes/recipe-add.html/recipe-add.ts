@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Recipe } from '../recipe.model';
 import { RecipesService } from '../recipes.service';
 import { Ingredient } from '../../../shared/models/ingredient.model';
+import { HelperService } from '../../../shared/services/helper.service';
 
 @Component({
   selector: 'page-recipe-add',
@@ -17,9 +18,9 @@ export class RecipeAddPage implements OnInit {
   constructor(private fb: FormBuilder,
               public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController,
               public viewCtrl: ViewController,
-              private recipesService: RecipesService) {
+              private recipesService: RecipesService,
+              private helperService: HelperService) {
   }
 
   ngOnInit() {
@@ -33,8 +34,9 @@ export class RecipeAddPage implements OnInit {
     const initialRecipeData: Recipe = this.buildInitialRecipe();
     
     this.recipeForm = this.fb.group({
-      title: [initialRecipeData.title, Validators.required],
+      name: [initialRecipeData.name, Validators.required],
       difficulty: [initialRecipeData.difficulty, Validators.required],
+      servings: [initialRecipeData.servings, Validators.required],
       ingredients: this.fb.array([]),
       notes: [initialRecipeData.notes]
     });
@@ -49,8 +51,9 @@ export class RecipeAddPage implements OnInit {
       initialRecipe = this.navParams.get('recipe');
     } else {
       initialRecipe = {
-        title: null,
-        difficulty: 0,
+        name: null,
+        difficulty: 1,
+        servings: 1,
         ingredients: [],
         notes: null
       }
@@ -88,16 +91,11 @@ export class RecipeAddPage implements OnInit {
 
   onSubmit() {
     if (this.isEditMode) {
-      this.recipesService.editRecipe(this.navParams.get('recipe').title, this.recipeForm.value);
+      this.recipesService.editRecipe(this.navParams.get('recipe').name, this.recipeForm.value);
     } else {
       this.recipesService.addRecipe(this.recipeForm.value);
     }
-    let toast = this.toastCtrl.create({
-      message: 'Recipe was saved successfully',
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present();
+    this.helperService.createToast('Recipe was saved successfully');
     this.viewCtrl.dismiss(true);
   }
 }

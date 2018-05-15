@@ -3,13 +3,14 @@ import { Storage } from "@ionic/storage";
 import { ShoppingList } from "./models/shopping-list.model";
 import { Ingredient } from "../../shared/models/ingredient.model";
 import { Subject } from "rxjs/Subject";
+import { HelperService } from "../../shared/services/helper.service";
 
 @Injectable()
 export class ShoppingListService {
   allListsChanged = new Subject<ShoppingList[]>();
   allLists: ShoppingList[] = [];
 
-  constructor(private storage: Storage) {}
+  constructor(private storage: Storage, private helperService: HelperService) {}
 
   loadData() {
     return this.storage.get('shopping-list')
@@ -18,7 +19,7 @@ export class ShoppingListService {
         this.allListsChanged.next(this.allLists);
       })
       .catch(() => {
-
+        this.helperService.createToast('Something went wrong, please try again', 'toast-error');
       });
   }
 
@@ -31,35 +32,41 @@ export class ShoppingListService {
   }
 
   addList(newList) {
-    this.allLists.push(new ShoppingList(newList.name, new Date(), newList.items));
-    this.saveData();
+    let copyAllLists = this.getLists();
+    copyAllLists.push(new ShoppingList(newList.name, new Date(), newList.items));
+    this.saveData(copyAllLists);
   }
 
-  editList(listTitle: string, newList: ShoppingList) {
-    this.allLists.forEach((list, index) => {
-      if (list.name === listTitle) {
-        this.allLists[index] = newList;
+  editList(listName: string, newList: ShoppingList) {
+    let copyAllLists = this.getLists();
+    copyAllLists.forEach((list, index) => {
+      if (list.name === listName) {
+        copyAllLists[index] = newList;
       }
     });
-    this.saveData();
+    this.saveData(copyAllLists);
   }
 
   removeList(index: number) {
-    this.allLists.splice(index, 1);
-    this.saveData();
+    let copyAllLists = this.getLists();
+    copyAllLists.splice(index, 1);
+    this.saveData(copyAllLists);
   }
 
   addIngredientsToList(ingredients: Ingredient[], index: number) {
-    this.allLists[index].items = [...this.allLists[index].items, ...ingredients];
-    this.saveData();
+    let copyAllLists = this.getLists();
+    copyAllLists[index].items = [...copyAllLists[index].items, ...ingredients];
+    this.saveData(copyAllLists);
   }
 
-  private saveData() {
-    this.storage.set('shopping-list', this.allLists)
+  private saveData(copyAllLists) {
+    this.storage.set('shopping-list', copyAllLists)
       .then(() => {
+        this.allLists = copyAllLists;
+        this.allListsChanged.next(this.allLists);
       })
       .catch(() => {
-        console.log('test');
+        this.helperService.createToast('Something went wrong, please try again', 'toast-error');
       });
   }
 }

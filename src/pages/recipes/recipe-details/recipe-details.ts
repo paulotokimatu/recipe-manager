@@ -8,6 +8,7 @@ import { Ingredient } from '../../../shared/models/ingredient.model';
 import { ShoppingListChoosingModal } from './shopping-list-choosing/shopping-list-choosing';
 import { RecipesService } from '../recipes.service';
 import { RecipeAddPage } from '../recipe-add.html/recipe-add';
+import { HelperService } from '../../../shared/services/helper.service';
 
 @Component({
   selector: 'page-recipe-details',
@@ -24,7 +25,7 @@ export class RecipeDetailsPage implements OnInit {
               public navParams: NavParams,
               public shoppingListService: ShoppingListService,
               public recipesService: RecipesService,
-              public toastCtrl: ToastController,
+              private helperService: HelperService,
               private app: App) {}
 
   ngOnInit() {
@@ -87,11 +88,6 @@ export class RecipeDetailsPage implements OnInit {
   }
 
   openToast(indexShoppingList) {
-    const toast = this.toastCtrl.create({
-      message: 'Ingredients successfully added to shopping list ' + this.allShoppingList[indexShoppingList].name,
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present();
+    this.helperService.createToast('Ingredients successfully added to shopping list ' + this.allShoppingList[indexShoppingList].name);
   }
 }
